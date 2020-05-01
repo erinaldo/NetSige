@@ -1,0 +1,26 @@
+INSERT INTO COSTSHARINGLOCAL
+ (
+    SEQ,
+    COSTSHARINGID,
+    NAME,
+    ZIPCODE,
+    ADDRESS,
+    NUMBER,
+    COMPLEMENT,
+    DISTRICT,
+    CITY,
+    STATE
+ )
+VALUES
+ (
+    @SEQ,
+    @COSTSHARINGID,
+    @NAME,
+    @ZIPCODE,
+    @ADDRESS,
+    @NUMBER,
+    @COMPLEMENT,
+    @DISTRICT,
+    @CITY,
+    @STATE
+ );

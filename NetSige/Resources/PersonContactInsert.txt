@@ -1,0 +1,24 @@
+INSERT INTO PERSONCONTACT
+ (
+    SEQ,
+    PERSONID,
+    NAME,
+    JOBTITLE,
+    PHONE1,
+    PHONE2,
+    PHONE3,
+    EMAIL1,
+    EMAIL2
+ )
+VALUES
+ (
+    @SEQ,
+    @PERSONID,
+    @NAME,
+    @JOBTITLE,
+    @PHONE1,
+    @PHONE2,
+    @PHONE3,
+    @EMAIL1,
+    @EMAIL2
+ );

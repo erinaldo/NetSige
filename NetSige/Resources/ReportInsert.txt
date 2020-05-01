@@ -1,0 +1,8 @@
+INSERT INTO REPORT
+(
+    PATH
+)
+VALUES
+(
+    @PATH
+);

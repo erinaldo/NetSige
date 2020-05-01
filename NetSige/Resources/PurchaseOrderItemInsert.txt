@@ -1,0 +1,26 @@
+INSERT INTO PURCHASEORDERITEM
+ (
+    SEQ,
+    PURCHASEORDERID,
+    ITEMID,
+    QUANTITY,
+    ITEMUNITID,
+    PRICE,
+    DISCOUNT,
+    COMPLEMENT,   
+    IPI,
+    ICMS
+ )
+VALUES
+ (
+    @SEQ,
+    @PURCHASEORDERID,
+    @ITEMID,
+    @QUANTITY,
+    @ITEMUNITID,
+    @PRICE,
+    @DISCOUNT,
+    @COMPLEMENT,   
+    @IPI,
+    @ICMS
+ );

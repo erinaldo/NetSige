@@ -1,0 +1,22 @@
+INSERT INTO USER
+ (
+    STATUSID,
+    CREATIONDATE,
+    USERNAME,
+    PASSWORD,
+    NAME,
+    EMAIL,
+    PHONE,
+    USERID
+ )
+VALUES
+ (
+    @STATUSID,
+    @CREATIONDATE,
+    @USERNAME,
+    @PASSWORD,
+    @NAME,
+    @EMAIL,
+    @PHONE,
+    @USERID
+ );

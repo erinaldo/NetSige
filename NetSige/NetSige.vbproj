@@ -1,0 +1,1039 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{65E1F442-8E13-419B-BC0D-D51F35BC7C05}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>NetSige.My.MyApplication</StartupObject>
+    <RootNamespace>NetSige</RootNamespace>
+    <AssemblyName>NetSige</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>NetSige.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>NetSige.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Consulta.CNPJ, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Consulta.CNPJ.1.0.1\lib\netstandard2.0\Consulta.CNPJ.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlLibrary">
+      <HintPath>..\..\ControlLibrary\ControlLibrary\bin\Debug\ControlLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.112.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.112.2\lib\net40\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.112.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.112.2\lib\net40\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.112.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.112.2\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\Common.vb" />
+    <Compile Include="Class\Cryptograph.vb" />
+    <Compile Include="Connected Services\ZipCodeFinder\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="CostSharing\CostSharing.vb" />
+    <Compile Include="CostSharing\FrmCostSharing.designer.vb">
+      <DependentUpon>FrmCostSharing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CostSharing\FrmCostSharing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CostSharing\FrmCostSharingGrid.designer.vb">
+      <DependentUpon>FrmCostSharingGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CostSharing\FrmCostSharingGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CostSharing\FrmCostSharingLocal.designer.vb">
+      <DependentUpon>FrmCostSharingLocal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CostSharing\FrmCostSharingLocal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataSearch\DataSearch.vb" />
+    <Compile Include="DataSearch\FrmDocument.designer.vb">
+      <DependentUpon>FrmDocument.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DataSearch\FrmDocument.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataSearch\FrmFilter.designer.vb">
+      <DependentUpon>FrmFilter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DataSearch\FrmFilter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataSearch\FrmZipCode.designer.vb">
+      <DependentUpon>FrmZipCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DataSearch\FrmZipCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemGroup\FrmItemGroup.designer.vb">
+      <DependentUpon>FrmItemGroup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ItemGroup\FrmItemGroup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemGroup\FrmItemGroupsGrid.designer.vb">
+      <DependentUpon>FrmItemGroupsGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ItemGroup\FrmItemGroupsGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemGroup\ItemGroup.vb" />
+    <Compile Include="ItemUnit\FrmItemUnit.designer.vb">
+      <DependentUpon>FrmItemUnit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ItemUnit\FrmItemUnit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemUnit\FrmItemUnitsGrid.designer.vb">
+      <DependentUpon>FrmItemUnitsGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ItemUnit\FrmItemUnitsGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemUnit\ItemUnit.vb" />
+    <Compile Include="Item\FrmItem.designer.vb">
+      <DependentUpon>FrmItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Item\FrmItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\FrmItemsGrid.designer.vb">
+      <DependentUpon>FrmItemsGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Item\FrmItemsGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\Item.vb" />
+    <Compile Include="Main\FrmLog.designer.vb">
+      <DependentUpon>FrmLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Main\FrmLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\FrmLogin.designer.vb">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Main\FrmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\FrmMain.designer.vb">
+      <DependentUpon>FrmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Main\FrmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Class\Session.vb" />
+    <Compile Include="PaymentTerm\FrmPaymentsTermGrid.designer.vb">
+      <DependentUpon>FrmPaymentsTermGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentTerm\FrmPaymentsTermGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentTerm\FrmPaymentTerm.designer.vb">
+      <DependentUpon>FrmPaymentTerm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentTerm\FrmPaymentTerm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentTerm\PaymentTerm.vb" />
+    <Compile Include="Person\FrmPerson.designer.vb">
+      <DependentUpon>FrmPerson.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Person\FrmPerson.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\FrmPersonContact.designer.vb">
+      <DependentUpon>FrmPersonContact.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Person\FrmPersonContact.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\FrmPersonsGrid.designer.vb">
+      <DependentUpon>FrmPersonsGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Person\FrmPersonsGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\Person.vb" />
+    <Compile Include="PurchaseOrder\FrmOrder.designer.vb">
+      <DependentUpon>FrmOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseOrder\FrmOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchaseOrder\FrmOrderItem.designer.vb">
+      <DependentUpon>FrmOrderItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseOrder\FrmOrderItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchaseOrder\FrmOrdersGrid.designer.vb">
+      <DependentUpon>FrmOrdersGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseOrder\FrmOrdersGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchaseOrder\Order.vb" />
+    <Compile Include="Quotation\FrmQuotation.designer.vb">
+      <DependentUpon>FrmQuotation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Quotation\FrmQuotation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quotation\FrmQuotationComposition.designer.vb">
+      <DependentUpon>FrmQuotationComposition.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Quotation\FrmQuotationComposition.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quotation\FrmQuotationsGrid.designer.vb">
+      <DependentUpon>FrmQuotationsGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Quotation\FrmQuotationsGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quotation\Quotation.vb" />
+    <Compile Include="Quotation\UcCompositionGeneral.designer.vb">
+      <DependentUpon>UcCompositionGeneral.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Quotation\UcCompositionGeneral.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Quotation\UcCompositionItems.designer.vb">
+      <DependentUpon>UcCompositionItems.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Quotation\UcCompositionItems.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Quotation\UcCompositionProviders.designer.vb">
+      <DependentUpon>UcCompositionProviders.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Quotation\UcCompositionProviders.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Report\DataSets\DsPurchaseOrder.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsPurchaseOrder.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\FrmReportManager.designer.vb">
+      <DependentUpon>FrmReportManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\FrmReportManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\FrmReportRunner.designer.vb">
+      <DependentUpon>FrmReportRunner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\FrmReportRunner.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Report.vb" />
+    <Compile Include="Report\ReportScript.vb" />
+    <Compile Include="Tests\Form1.designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\Form2.designer.vb">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\FrmUser.designer.vb">
+      <DependentUpon>FrmUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="User\FrmUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\FrmUsersGrid.designer.vb">
+      <DependentUpon>FrmUsersGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="User\FrmUsersGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\User.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CostSharing\FrmCostSharing.resx">
+      <DependentUpon>FrmCostSharing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CostSharing\FrmCostSharingGrid.resx">
+      <DependentUpon>FrmCostSharingGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CostSharing\FrmCostSharingLocal.resx">
+      <DependentUpon>FrmCostSharingLocal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSearch\FrmDocument.resx">
+      <DependentUpon>FrmDocument.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSearch\FrmFilter.resx">
+      <DependentUpon>FrmFilter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSearch\FrmZipCode.resx">
+      <DependentUpon>FrmZipCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemGroup\FrmItemGroup.resx">
+      <DependentUpon>FrmItemGroup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemGroup\FrmItemGroupsGrid.resx">
+      <DependentUpon>FrmItemGroupsGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemUnit\FrmItemUnit.resx">
+      <DependentUpon>FrmItemUnit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemUnit\FrmItemUnitsGrid.resx">
+      <DependentUpon>FrmItemUnitsGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Item\FrmItem.resx">
+      <DependentUpon>FrmItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Item\FrmItemsGrid.resx">
+      <DependentUpon>FrmItemsGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\FrmLog.resx">
+      <DependentUpon>FrmLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\FrmLogin.resx">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\FrmMain.resx">
+      <DependentUpon>FrmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentTerm\FrmPaymentsTermGrid.resx">
+      <DependentUpon>FrmPaymentsTermGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentTerm\FrmPaymentTerm.resx">
+      <DependentUpon>FrmPaymentTerm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\FrmPerson.resx">
+      <DependentUpon>FrmPerson.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\FrmPersonContact.resx">
+      <DependentUpon>FrmPersonContact.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\FrmPersonsGrid.resx">
+      <DependentUpon>FrmPersonsGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PurchaseOrder\FrmOrder.resx">
+      <DependentUpon>FrmOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PurchaseOrder\FrmOrderItem.resx">
+      <DependentUpon>FrmOrderItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PurchaseOrder\FrmOrdersGrid.resx">
+      <DependentUpon>FrmOrdersGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotation\FrmQuotation.resx">
+      <DependentUpon>FrmQuotation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotation\FrmQuotationComposition.resx">
+      <DependentUpon>FrmQuotationComposition.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotation\FrmQuotationsGrid.resx">
+      <DependentUpon>FrmQuotationsGrid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotation\UcCompositionGeneral.resx">
+      <DependentUpon>UcCompositionGeneral.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotation\UcCompositionItems.resx">
+      <DependentUpon>UcCompositionItems.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotation\UcCompositionProviders.resx">
+      <DependentUpon>UcCompositionProviders.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\FrmReportManager.resx">
+      <DependentUpon>FrmReportManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\FrmReportRunner.resx">
+      <DependentUpon>FrmReportRunner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Form2.resx">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\FrmUser.resx">
+      <DependentUpon>FrmUser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\FrmUsersGrid.resx">
+      <DependentUpon>FrmUsersGrid.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ZipCodeFinder\AtendeClienteService.wsdl" />
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.atualizaPagamentoNaEntregaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.atualizaRemessaAgrupadaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.bloquearObjetoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.buscaClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.buscaContratoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.buscaDataAtualResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.buscaOpcoesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.buscaPagamentoEntregaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.buscaServicosAdicionaisAtivosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.buscaServicosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.buscaServicosValorDeclaradoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.buscaServicosXServicosAdicionaisResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.buscaTarifaValeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.calculaTarifaServicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.cancelarObjetoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.cancelarPedidoScolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.clienteERP.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.consultaCEPResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.contratoERP.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.dimensaoTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.embalagemLRSMaster.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.enderecoERP.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.fechaPlpResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.fechaPlpVariosServicosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.geraDigitoVerificadorEtiquetasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.getStatusCartaoPostagemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.getStatusPLPResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.integrarUsuarioScolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.mensagemParametrizadaTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.obterClienteAtualizacaoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.obterEmbalagemLRSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.obterMensagemParametrizadaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.pesquisarDimensoesServicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.pesquisarEmbalagensPorServicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.pesquisarParametrosPorDescricaoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.pesquisarServicosAdicionaisResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.retornoCancelamento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.servicoAdicionalTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.servicoAdicionalXML.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.servicoERP.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.solicitaEtiquetasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.solicitaPLPResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.solicitarPostagemScolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.solicitaXmlPlpResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.statusCartao.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.statusPlp.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.tipoEmbalagem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.valePostal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.validaEtiquetaPLPResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.validaPlpResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.validarPostagemReversaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.validarPostagemSimultaneaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.verificaDisponibilidadeServicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.verificaModalTransporteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ZipCodeFinder\NetSige.ZipCodeFinder.VerificaSeTodosObjetosCanceladosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Report\DataSets\DsPurchaseOrder.xsc">
+      <DependentUpon>DsPurchaseOrder.xsd</DependentUpon>
+    </None>
+    <None Include="Report\DataSets\DsPurchaseOrder.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsPurchaseOrder.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Report\DataSets\DsPurchaseOrder.xss">
+      <DependentUpon>DsPurchaseOrder.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharingDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharingFilter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharingInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharingLastLocalSeqUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharingLocalDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharingLocalInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharingLocalLastSeq.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharingLocalSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharingLocalUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharingSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CostSharingUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FilterSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HistoryDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HistorySelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Include.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IncludeSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemFilter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemGroupDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemGroupFilter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemGroupInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemGroupSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemGroupUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemTransactions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemUnit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemUnitDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemUnitFilter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemUnitInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemUnitSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemUnitUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logoff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NavFirst.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NavLast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NavNext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NavPrevious.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Panels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaymentTerm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaymentTermDayDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaymentTermDayInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaymentTermDaySelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaymentTermDayUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaymentTermDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaymentTermFilter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaymentTermInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaymentTermSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaymentTermUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonContactDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonContactInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonContactLastSeq.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonContactSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonContactUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonDefaultContactUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonFilter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonLastContactSeqUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PersonUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Preferences.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Purchase Order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PurchaseOrderDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PurchaseOrderFilter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PurchaseOrderInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PurchaseOrderItemDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PurchaseOrderItemInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PurchaseOrderItemSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PurchaseOrderItemUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PurchaseOrderLastItemSeqUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PurchaseOrderSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PurchaseOrderUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Quotation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QuotationAnswerSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QuotationSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReportInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReportSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SessionCheckUser.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SqlLastID.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tables.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserDelete.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserFilter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserInsert.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Username.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserSelect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserUpdate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\View.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZipCode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ZipCodeFinder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ZipCodeFinder\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ZipCodeFinder\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ZipCodeFinder\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Logo.png" />
+    <None Include="Resources\icon.ico" />
+    <Content Include="SqlServerTypes\Loader.cs" />
+    <Content Include="SqlServerTypes\readme.htm" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este projeto faz referência a pacotes do NuGet que não estão presentes neste computador. Use a Restauração de Pacotes do NuGet para baixá-los.  Para obter mais informações, consulte http://go.microsoft.com/fwlink/?LinkID=322105. O arquivo ausente é {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets')" />
+</Project>
