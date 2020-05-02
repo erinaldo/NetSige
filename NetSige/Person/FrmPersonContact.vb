@@ -92,7 +92,7 @@ Public Class FrmPersonContact
             CMessageBox.Show("Telefone inválido, utilize um dos formatos abaixo, com ou sem mascara." & vbNewLine &
                                   "Fixo: (00) 0000-0000" & vbNewLine & "Celular: (00) 0 0000-0000" & vbNewLine & "Não geograficos: 0000-000-0000",
                                   CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
-            CMessageBox.CMessageBoxStyle.Reset()
+            'CMessageBox.CMessageBoxStyle.Reset()
             TxtPhone1.Select()
             Return False
         ElseIf Phone2.Length > 0 AndAlso Not IsNumeric(Phone2) Then
@@ -100,7 +100,7 @@ Public Class FrmPersonContact
             CMessageBox.Show("Telefone inválido, utilize um dos formatos abaixo, com ou sem mascara." & vbNewLine &
                                   "Fixo: (00) 0000-0000" & vbNewLine & "Celular: (00) 0 0000-0000" & vbNewLine & "Não geograficos: 0000-000-0000",
                                   CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
-            CMessageBox.CMessageBoxStyle.Reset()
+            'CMessageBox.CMessageBoxStyle.Reset()
             TxtPhone2.Select()
             Return False
         ElseIf Phone3.Length > 0 AndAlso Not IsNumeric(Phone3) Then
@@ -108,7 +108,7 @@ Public Class FrmPersonContact
             CMessageBox.Show("Telefone inválido, utilize um dos formatos abaixo, com ou sem mascara." & vbNewLine &
                                   "Fixo: (00) 0000-0000" & vbNewLine & "Celular: (00) 0 0000-0000" & vbNewLine & "Não geograficos: 0000-000-0000",
                                   CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
-            CMessageBox.CMessageBoxStyle.Reset()
+            'CMessageBox.CMessageBoxStyle.Reset()
             TxtPhone3.Select()
             Return False
         ElseIf Phone1.Length > 0 AndAlso Phone1.Length < 10 Or Phone1.Length > 11 Then
@@ -116,7 +116,7 @@ Public Class FrmPersonContact
             CMessageBox.Show("Telefone inválido, utilize um dos formatos abaixo, com ou sem mascara." & vbNewLine &
                                   "Fixo: (00) 0000-0000" & vbNewLine & "Celular: (00) 0 0000-0000" & vbNewLine & "Não geograficos: 0000-000-0000",
                                   CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
-            CMessageBox.CMessageBoxStyle.Reset()
+            'CMessageBox.CMessageBoxStyle.Reset()
             TxtPhone1.Select()
             Return False
         ElseIf Phone2.Length > 0 AndAlso Phone2.Length < 10 Or Phone2.Length > 11 Then
@@ -124,7 +124,7 @@ Public Class FrmPersonContact
             CMessageBox.Show("Telefone inválido, utilize um dos formatos abaixo, com ou sem mascara." & vbNewLine &
                                   "Fixo: (00) 0000-0000" & vbNewLine & "Celular: (00) 0 0000-0000" & vbNewLine & "Não geograficos: 0000-000-0000",
                                   CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
-            CMessageBox.CMessageBoxStyle.Reset()
+            'CMessageBox.CMessageBoxStyle.Reset()
             TxtPhone2.Select()
             Return False
         ElseIf Phone3.Length > 0 AndAlso Phone3.Length < 10 Or Phone3.Length > 11 Then
@@ -132,7 +132,7 @@ Public Class FrmPersonContact
             CMessageBox.Show("Telefone inválido, utilize um dos formatos abaixo, com ou sem mascara." & vbNewLine &
                                   "Fixo: (00) 0000-0000" & vbNewLine & "Celular: (00) 0 0000-0000" & vbNewLine & "Não geograficos: 0000-000-0000",
                                   CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
-            CMessageBox.CMessageBoxStyle.Reset()
+            'CMessageBox.CMessageBoxStyle.Reset()
             TxtPhone3.Select()
             Return False
         ElseIf Email1.Length > 0 AndAlso Not RegexEmail.IsMatch(Email1) Then

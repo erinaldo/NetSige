@@ -43,6 +43,8 @@ Public Class FrmOrder
         QtbCarrierID.Unfreeze(True)
         LblIDValue.Text = _Order.ID
         BtnStatusValue.Text = _Order.Status
+        LblSituation.Text = "Pedido " & _Order.Situation
+        BtnDelete.Enabled = If(_Order.Situation = "Aprovado", False, True)
         LblCreationDateValue.Text = _Order.CreationDate.ToString("dd/MM/yyyy")
         LblQuotation.Visible = If(_Order.Quotation.ID = 0, False, True)
         LblQuotationValue.Visible = If(_Order.Quotation.ID = 0, False, True)
@@ -284,6 +286,10 @@ Public Class FrmOrder
                 BtnStatusValue.ForeColor = Color.DarkGreen
         End Select
     End Sub
+
+
+
+
     Private Sub BtnFirst_Click(sender As Object, e As EventArgs) Handles BtnFirst.Click
         If BtnSave.Enabled Then
             If CMessageBox.Show("Houve alterações que ainda não foram salvas. Deseja salvar antes de continuar?", CMessageBox.CMessageBoxType.Question, CMessageBox.CMessageBoxButtons.YesNo) = DialogResult.Yes Then
@@ -360,10 +366,11 @@ Public Class FrmOrder
         End If
     End Sub
     Public Sub ApplyFormStateStyle()
-        If BtnStatusValue.Text = "Cancelado" Then
+        If BtnStatusValue.Text = "Cancelado" Or LblSituation.Text = "Pedido Aprovado" Then
             BtnStatusValue.Visible = False
             LblCancel.Visible = True
             QtbCostSharingID.ReadOnly = True
+            QtbCostSharingDocument.ReadOnly = True
             QtbCostSharingName.ReadOnly = True
             QtbProviderID.ReadOnly = True
             QtbProviderDocument.ReadOnly = True
@@ -371,6 +378,7 @@ Public Class FrmOrder
             TxtContact.ReadOnly = True
             TxtPhone.ReadOnly = True
             TxtEmail.ReadOnly = True
+            QtbPaymentID.ReadOnly = True
             QtbPaymentName.ReadOnly = True
             TxtInitialDelivery.ReadOnly = True
             BtnInitialDelivery.Enabled = False
@@ -381,6 +389,8 @@ Public Class FrmOrder
             DtbCarrierPrice.ReadOnly = True
             DtbICMSST.ReadOnly = True
             CbxCarrierType.Enabled = False
+            QtbCarrierID.ReadOnly = True
+            QtbCarrierDocument.ReadOnly = True
             QtbCarrierName.ReadOnly = True
             BtnIncludeItem.Enabled = False
             BtnEditItem.Enabled = False
@@ -391,6 +401,7 @@ Public Class FrmOrder
             BtnStatusValue.Visible = True
             LblCancel.Visible = False
             QtbCostSharingID.ReadOnly = False
+            QtbCostSharingDocument.ReadOnly = False
             QtbCostSharingName.ReadOnly = False
             QtbProviderID.ReadOnly = False
             QtbProviderDocument.ReadOnly = False
@@ -398,6 +409,7 @@ Public Class FrmOrder
             TxtContact.ReadOnly = False
             TxtPhone.ReadOnly = False
             TxtEmail.ReadOnly = False
+            QtbPaymentID.ReadOnly = False
             QtbPaymentName.ReadOnly = False
             TxtInitialDelivery.ReadOnly = False
             BtnInitialDelivery.Enabled = True
@@ -408,6 +420,8 @@ Public Class FrmOrder
             DtbCarrierPrice.ReadOnly = False
             DtbICMSST.ReadOnly = False
             CbxCarrierType.Enabled = True
+            QtbCarrierID.ReadOnly = False
+            QtbCarrierDocument.ReadOnly = False
             QtbCarrierName.ReadOnly = False
             BtnIncludeItem.Enabled = True
             BtnEditItem.Enabled = True
@@ -415,6 +429,10 @@ Public Class FrmOrder
             TxtExternalNote.ReadOnly = False
             TxtInternalNote.ReadOnly = False
         End If
+        BtnApprove.Enabled = If(_Order.ID > 0, True, False)
+        BtnFinalizeItem.Enabled = If(_Order.Situation = "Aprovado", True, False)
+        BtnPrint.Enabled = If(_Order.Situation = "Aprovado", True, False)
+
     End Sub
     Private Function Save() As Boolean
         Dim FirstDisplayedRow As Long
@@ -661,7 +679,7 @@ Public Class FrmOrder
         End If
     End Sub
 
-    Private Sub BtnReport_Click(sender As Object, e As EventArgs) Handles BtnReport.Click
+    Private Sub BtnReport_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Dim ReportPath As String = Common.ReportPath & "\PurchaseOrder.rep"
         Cursor = Cursors.WaitCursor
         If File.Exists(ReportPath) Then
@@ -674,9 +692,48 @@ Public Class FrmOrder
 
     Private Sub LblIDValue_TextChanged(sender As Object, e As EventArgs) Handles LblIDValue.TextChanged
         If IsNumeric(LblIDValue.Text) Then
-            BtnReport.Enabled = If(LblIDValue.Text > 0, True, False)
+            BtnPrint.Enabled = If(LblIDValue.Text > 0, True, False)
             BtnHistory.Enabled = If(LblIDValue.Text > 0, True, False)
             BtnFinalizeItem.Enabled = If(LblIDValue.Text > 0, True, False)
+        End If
+    End Sub
+
+    Private Sub LblSituation_TextChanged(sender As Object, e As EventArgs) Handles LblSituation.TextChanged
+        BtnApprove.Image = If(LblSituation.Text = "Pedido Aprovado", My.Resources.Approve, My.Resources.Disapprove)
+        BtnApprove.Text = If(LblSituation.Text = "Pedido Aprovado", "Desaprovar", "Aprovar")
+        BtnApprove.ToolTipText = If(LblSituation.Text = "Pedido Aprovado", "Desaprovar", "Aprovar")
+        LblSituation.ForeColor = If(LblSituation.Text = "Pedido Aprovado", Color.DarkBlue, Color.DarkRed)
+    End Sub
+
+    Private Sub BtnApprove_Click(sender As Object, e As EventArgs) Handles BtnApprove.Click
+        Dim FirstDisplayedRow As Long
+        If Not BtnSave.Enabled Then
+            If _Order.Status = "Pendente" Then
+                Try
+                    _Order.ChangeSituation()
+                    LblSituation.Text = "Pedido " & _Order.Situation
+                    ApplyFormStateStyle()
+
+                    If _FormGrid IsNot Nothing Then
+                        FirstDisplayedRow = If(_Grid.FirstDisplayedScrollingRowIndex < 0, 0, _Grid.FirstDisplayedScrollingRowIndex)
+                        _Filter.Filter(If(_Grid.SelectedRows.Count = 1, _Grid.SelectedRows(0).Index, 0))
+                        For i = 0 To _Grid.Rows.Count - 1
+                            If _Grid.Rows(i).Cells("ID").Value = LblIDValue.Text Then
+                                _Grid.Rows(i).Selected = True
+                                _Grid.FirstDisplayedScrollingRowIndex = FirstDisplayedRow
+                            End If
+                        Next i
+                        RefreshNavigation()
+                    End If
+
+                Catch ex As Exception
+                    CMessageBox.Show(String.Format("ERRO0000", "Ocorreu um erro ao {0} o pedido.", If(_Order.Situation = "Aprovado", "desaprovar", "aprovar")), CMessageBox.CMessageBoxType.Error, CMessageBox.CMessageBoxButtons.OK, ex)
+                End Try
+            Else
+                CMessageBox.Show("Só é possível desaprovar pedidos com a situação 'Pendente'.", CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
+            End If
+        Else
+            CMessageBox.Show("Existem alterações não salvas, salve o pedido antes de aprovar.", CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
         End If
     End Sub
 End Class

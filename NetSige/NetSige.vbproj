@@ -1022,6 +1022,13 @@
   <ItemGroup>
     <None Include="Resources\Logo.png" />
     <None Include="Resources\icon.ico" />
+    <Content Include="Logs.txt" />
+    <None Include="Resources\Approve.png" />
+    <None Include="Resources\Disapprove.png" />
+    <None Include="Resources\FinalizeItem.png" />
+    <None Include="Resources\History.png" />
+    <None Include="Resources\Print.png" />
+    <None Include="Resources\PurchaseOrderChangeSituation.txt" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
   </ItemGroup>

@@ -57,6 +57,10 @@ Public Class Common
         "Recebido",
         "Cancelado"
     }
+    Public Shared OrderSituationTypes As New List(Of String) From {
+        "Não Aprovado",
+        "Aprovado"
+    }
     Public Shared CarrierTypes As New List(Of String) From {
         "Sem Frete",
         "CIF",

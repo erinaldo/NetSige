@@ -13,6 +13,7 @@ Public Class FrmCostSharingLocal
     End Sub
     Private Sub Form_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
         LoadLocal()
+        Tip.SetToolTip(TxtPhone, "Fixo: (00) 0000-0000" & vbNewLine & "Celular: (00) 0 0000-0000" & vbNewLine & "Não geograficos: 0000-000-0000" & vbNewLine & "Com ou sem mascara.")
     End Sub
     Private Sub LoadLocal()
         If _Local.ID > 0 Then
@@ -29,6 +30,8 @@ Public Class FrmCostSharingLocal
         TxtDistrict.Text = _Local.District
         TxtCity.Text = _Local.City
         CbxState.Text = _Local.State
+        TxtPhone.Text = _Local.Phone
+        TxtEmail.Text = _Local.Email
         BtnSave.Enabled = False
         RefreshNavigation()
     End Sub
@@ -47,7 +50,9 @@ Public Class FrmCostSharingLocal
                     .Complement = TxtComplement.Text,
                     .District = TxtDistrict.Text,
                     .City = TxtCity.Text,
-                    .State = CbxState.Text
+                    .State = CbxState.Text,
+                    .Phone = TxtPhone.Text,
+                    .Email = TxtEmail.Text
                 }
                 _CostSharing.Locals.Add(_Local)
                 LblSeqValue.Text = _Local.Seq
@@ -61,6 +66,8 @@ Public Class FrmCostSharingLocal
                 _Local.District = TxtDistrict.Text
                 _Local.City = TxtCity.Text
                 _Local.State = CbxState.Text
+                _Local.Phone = TxtPhone.Text
+                _Local.Email = TxtEmail.Text
             End If
             _CostSharing.GetLocals(__CostSharingForm.DgvLocals, LblSeqValue.Text)
             TxtZipCode.Select()
@@ -74,6 +81,13 @@ Public Class FrmCostSharingLocal
     End Function
 
     Private Function IsValidFields() As Boolean
+        Dim Phone As String
+        Dim Email As String
+        Dim RegexEmail As Text.RegularExpressions.Regex
+        Phone = TxtPhone.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")
+        RegexEmail = New Text.RegularExpressions.Regex("^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$")
+        Email = TxtEmail.Text
+
         If TxtName.Text = Nothing Then
             CMessageBox.Show("Por favor, informe o nome.", CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
             TxtName.Select()
@@ -98,9 +112,54 @@ Public Class FrmCostSharingLocal
             CMessageBox.Show("Por favor, informe o Estado.", CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
             CbxState.Select()
             Return False
+        ElseIf Phone.Length > 0 AndAlso Not IsNumeric(Phone) Then
+            'CMessageBox.CMessageBoxStyle.SmallDialogSize = New Size(CMessageBox.CMessageBoxStyle.SmallDialogSize.Width, CMessageBox.CMessageBoxStyle.SmallDialogSize.Height + 50)
+            CMessageBox.Show("Telefone inválido, utilize um dos formatos abaixo, com ou sem mascara." & vbNewLine &
+                                      "Fixo: (00) 0000-0000" & vbNewLine & "Celular: (00) 0 0000-0000" & vbNewLine & "Não geograficos: 0000-000-0000",
+                                      CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
+            'CMessageBox.CMessageBoxStyle.Reset()
+            TxtPhone.Select()
+            Return False
+        ElseIf Phone.Length > 0 AndAlso Phone.Length < 10 Or Phone.Length > 11 Then
+            'CMessageBox.CMessageBoxStyle.SmallDialogSize = New Size(CMessageBox.CMessageBoxStyle.SmallDialogSize.Width, CMessageBox.CMessageBoxStyle.SmallDialogSize.Height + 50)
+            CMessageBox.Show("Telefone inválido, utilize um dos formatos abaixo, com ou sem mascara." & vbNewLine &
+                                  "Fixo: (00) 0000-0000" & vbNewLine & "Celular: (00) 0 0000-0000" & vbNewLine & "Não geograficos: 0000-000-0000",
+                                  CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
+            'CMessageBox.CMessageBoxStyle.Reset()
+            TxtPhone.Select()
+            Return False
+        ElseIf TxtEmail.Text = Nothing Then
+            CMessageBox.Show("Por favor, informe o E-Mail.", CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
+            TxtEmail.Select()
+            Return False
+        ElseIf Email.Length > 0 AndAlso Not RegexEmail.IsMatch(Email) Then
+            CMessageBox.Show("E-mail inválido.", CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
+            TxtEmail.Select()
+            Return False
         End If
         Return True
     End Function
+
+    Private Sub TxtPhone_LostFocus(sender As Object, e As EventArgs) Handles TxtPhone.LostFocus
+        Dim TxtBox As TextBox = CType(sender, TextBox)
+        Dim Txt As String = TxtBox.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")
+        If IsNumeric(Txt) Then
+            Select Case Txt.Length
+                Case Is = 11
+                    If Strings.Left(Txt, 4) = "0300" Or Strings.Left(Txt, 4) = "0500" Or
+                       Strings.Left(Txt, 4) = "0800" Or Strings.Left(Txt, 4) = "0900" Then
+                        Txt = Txt.Substring(0, 4) & "-" & Txt.Substring(4, 3) & "-" & Txt.Substring(7, 4)
+                    Else
+                        Txt = "(" & Txt.Substring(0, 2) & ") " & Txt.Substring(2, 1) & " " & Txt.Substring(3, 4) & "-" & Txt.Substring(7, 4)
+                    End If
+                    TxtBox.Text = Txt
+                Case Is = 10
+                    Txt = "(" & Txt.Substring(0, 2) & ") " & Txt.Substring(2, 4) & "-" & Txt.Substring(6, 4)
+                    TxtBox.Text = Txt
+            End Select
+        End If
+    End Sub
+
     Public Sub RefreshNavigation()
         If __CostSharingForm.DgvLocals.SelectedRows.Count = 1 Then
             If __CostSharingForm.DgvLocals.Rows(0).Selected And __CostSharingForm.DgvLocals.Rows.Count > 1 Then
@@ -150,7 +209,9 @@ Public Class FrmCostSharingLocal
                                                                   TxtDistrict.TextChanged,
                                                                   TxtCity.TextChanged,
                                                                   CbxState.SelectedIndexChanged,
-                                                                  TxtName.TextChanged
+                                                                  TxtName.TextChanged,
+                                                                  TxtPhone.TextChanged,
+                                                                  TxtEmail.TextChanged
         BtnSave.Enabled = True
     End Sub
 
@@ -210,7 +271,9 @@ Public Class FrmCostSharingLocal
                     .Complement = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("COMPLEMENT").Value,
                     .District = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("DISTRICT").Value,
                     .City = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("CITY").Value,
-                    .State = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("STATE").Value
+                    .State = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("STATE").Value,
+                    .Phone = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("PHONE").Value,
+                    .Email = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("EMAIL").Value
                 }
                 LoadLocal()
             End If
@@ -236,7 +299,9 @@ Public Class FrmCostSharingLocal
                     .Complement = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("COMPLEMENT").Value,
                     .District = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("DISTRICT").Value,
                     .City = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("CITY").Value,
-                    .State = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("STATE").Value
+                    .State = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("STATE").Value,
+                    .Phone = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("PHONE").Value,
+                    .Email = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("EMAIL").Value
                 }
                 LoadLocal()
             End If
@@ -262,7 +327,9 @@ Public Class FrmCostSharingLocal
                     .Complement = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("COMPLEMENT").Value,
                     .District = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("DISTRICT").Value,
                     .City = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("CITY").Value,
-                    .State = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("STATE").Value
+                    .State = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("STATE").Value,
+                    .Phone = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("PHONE").Value,
+                    .Email = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("EMAIL").Value
                 }
                 LoadLocal()
             End If
@@ -288,7 +355,9 @@ Public Class FrmCostSharingLocal
                     .Complement = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("COMPLEMENT").Value,
                     .District = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("DISTRICT").Value,
                     .City = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("CITY").Value,
-                    .State = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("STATE").Value
+                    .State = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("STATE").Value,
+                    .Phone = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("PHONE").Value,
+                    .Email = __CostSharingForm.DgvLocals.SelectedRows(0).Cells("EMAIL").Value
                 }
                 LoadLocal()
             End If

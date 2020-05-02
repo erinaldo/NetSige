@@ -15,7 +15,9 @@ Public Class FrmLogin
                     Hide()
                     QueriedBox.DefaultConnectionString = Common.ConnectionString
                     QueriedBox.DefaultDbProvider = "System.Data.SQLite"
+                    CMessageBox.CMessageBoxStyle.TitleFont = New Font("Century Gothic", 9.75, FontStyle.Bold)
                     CMessageBox.CMessageBoxStyle.MessageFont = New Font("Century Gothic", 9.75, FontStyle.Regular)
+                    'CMessageBox.Show("Falha no Login", "Usuário não encontrado.", CMessageBox.CMessageBoxType.Warning, CMessageBox.CMessageBoxButtons.OK)
                     If Not IO.Directory.Exists(Common.DatabasePath) Then IO.Directory.CreateDirectory(Common.DatabasePath)
                     If Not IO.Directory.Exists(Common.SessionPath) Then IO.Directory.CreateDirectory(Common.SessionPath)
                     If Not IO.Directory.Exists(Common.ItemImagesPath) Then IO.Directory.CreateDirectory(Common.ItemImagesPath)

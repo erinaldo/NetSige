@@ -161,23 +161,18 @@ Public Class CostSharing
     End Class
 
     Public Class Local
-
         Public Property ID As Long
         Public Property Seq As Long
         Public Property Name As String
         Public Property ZipCode As String
         Public Property Address As String
-
         Public Property Number As String
         Public Property Complement As String
         Public Property District As String
         Public Property City As String
-
         Public Property State As String
-
-
-
-
+        Public Property Phone As String
+        Public Property Email As String
     End Class
 
     Public Class LocalCollection
@@ -211,10 +206,14 @@ Public Class CostSharing
         Dgv.Columns.Add("DISTRICT", "Bairro")
         Dgv.Columns.Add("CITY", "Cidade")
         Dgv.Columns.Add("STATE", "Estado")
+
+        Dgv.Columns.Add("PHONE", "Telefone")
+        Dgv.Columns.Add("EMAIL", "E-Mail")
+
         Dgv.Columns("ID").Visible = False
         Dgv.Columns("COSTSHARINGID").Visible = False
         For Each Local As Local In Locals
-            Dgv.Rows.Add({Local.ID, Local.Seq, ID, Local.Name, Local.ZipCode, Local.Address, Local.Number, Local.Complement, Local.District, Local.City, Local.State})
+            Dgv.Rows.Add({Local.ID, Local.Seq, ID, Local.Name, Local.ZipCode, Local.Address, Local.Number, Local.Complement, Local.District, Local.City, Local.State, Local.Phone, Local.Email})
         Next Local
         If Dgv.Rows.Count > 0 Then
             If SelectedRow < Dgv.Rows.Count Then
@@ -327,7 +326,9 @@ Public Class CostSharing
                     .Complement = RowLocal.Item("COMPLEMENT").ToString,
                     .District = RowLocal.Item("DISTRICT").ToString,
                     .City = RowLocal.Item("CITY").ToString,
-                    .State = RowLocal.Item("STATE").ToString
+                    .State = RowLocal.Item("STATE").ToString,
+                    .Phone = RowLocal.Item("PHONE").ToString,
+                    .Email = RowLocal.Item("EMAIL").ToString
                 }
                 Locals.Add(Local)
             Next
@@ -386,6 +387,8 @@ Public Class CostSharing
                         ComLocalSave.Parameters.AddWithValue("@DISTRICT", Local.District)
                         ComLocalSave.Parameters.AddWithValue("@CITY", Local.City)
                         ComLocalSave.Parameters.AddWithValue("@STATE", Local.State)
+                        ComLocalSave.Parameters.AddWithValue("@PHONE", Local.Phone)
+                        ComLocalSave.Parameters.AddWithValue("@EMAIL", Local.Email)
                         ComLocalSave.ExecuteNonQuery()
                     End Using
                     Using ComReturnID As New SQLiteCommand(My.Resources.SqlLastID, Con)
@@ -463,6 +466,8 @@ Public Class CostSharing
                             ComLocalSave.Parameters.AddWithValue("@DISTRICT", Local.District)
                             ComLocalSave.Parameters.AddWithValue("@CITY", Local.City)
                             ComLocalSave.Parameters.AddWithValue("@STATE", Local.State)
+                            ComLocalSave.Parameters.AddWithValue("@PHONE", Local.Phone)
+                            ComLocalSave.Parameters.AddWithValue("@EMAIL", Local.Email)
                             ComLocalSave.ExecuteNonQuery()
                         End Using
                         Using ComReturnID As New SQLiteCommand(My.Resources.SqlLastID, Con)
@@ -488,6 +493,8 @@ Public Class CostSharing
                             ComLocalUpdate.Parameters.AddWithValue("@DISTRICT", Local.District)
                             ComLocalUpdate.Parameters.AddWithValue("@CITY", Local.City)
                             ComLocalUpdate.Parameters.AddWithValue("@STATE", Local.State)
+                            ComLocalUpdate.Parameters.AddWithValue("@PHONE", Local.Phone)
+                            ComLocalUpdate.Parameters.AddWithValue("@EMAIL", Local.Email)
                             ComLocalUpdate.ExecuteNonQuery()
                         End Using
                     End If

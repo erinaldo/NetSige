@@ -90,6 +90,11 @@ Partial Class FrmCostSharing
         Me.BtnChoseImage = New System.Windows.Forms.ToolStripMenuItem()
         Me.BtnDeleteImage = New System.Windows.Forms.ToolStripMenuItem()
         Me.BtnExportImage = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.TcCustomer.SuspendLayout()
         Me.TpMain.SuspendLayout()
@@ -167,6 +172,11 @@ Partial Class FrmCostSharing
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Label16)
+        Me.GroupBox2.Controls.Add(Me.Label15)
+        Me.GroupBox2.Controls.Add(Me.Label14)
+        Me.GroupBox2.Controls.Add(Me.Label13)
+        Me.GroupBox2.Controls.Add(Me.Label12)
         Me.GroupBox2.Controls.Add(Me.CbxState)
         Me.GroupBox2.Controls.Add(Me.TxtZipCode)
         Me.GroupBox2.Controls.Add(Me.BtnZipCode)
@@ -764,6 +774,61 @@ Partial Class FrmCostSharing
         Me.BtnExportImage.Size = New System.Drawing.Size(121, 22)
         Me.BtnExportImage.Text = "Exportar"
         '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.ForeColor = System.Drawing.Color.DarkRed
+        Me.Label12.Location = New System.Drawing.Point(33, 19)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(14, 17)
+        Me.Label12.TabIndex = 6
+        Me.Label12.Text = "*"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.ForeColor = System.Drawing.Color.DarkRed
+        Me.Label13.Location = New System.Drawing.Point(167, 19)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(14, 17)
+        Me.Label13.TabIndex = 6
+        Me.Label13.Text = "*"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.ForeColor = System.Drawing.Color.DarkRed
+        Me.Label14.Location = New System.Drawing.Point(42, 114)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(14, 17)
+        Me.Label14.TabIndex = 6
+        Me.Label14.Text = "*"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.ForeColor = System.Drawing.Color.DarkRed
+        Me.Label15.Location = New System.Drawing.Point(254, 114)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(14, 17)
+        Me.Label15.TabIndex = 6
+        Me.Label15.Text = "*"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.ForeColor = System.Drawing.Color.DarkRed
+        Me.Label16.Location = New System.Drawing.Point(423, 114)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(0, 0, 3, 0)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(14, 17)
+        Me.Label16.TabIndex = 6
+        Me.Label16.Text = "*"
+        '
         'FrmCostSharing
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -873,4 +938,9 @@ Partial Class FrmCostSharing
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label11 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label12 As Label
 End Class

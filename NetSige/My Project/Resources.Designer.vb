@@ -63,6 +63,16 @@ Namespace My.Resources
         '''<summary>
         '''  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property Approve() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Approve", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Attach() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Attach", resourceCulture)
@@ -224,7 +234,9 @@ Namespace My.Resources
         '''    COMPLEMENT,
         '''    DISTRICT,
         '''    CITY,
-        '''    STATE
+        '''    STATE,
+        '''    PHONE,
+        '''    EMAIL
         ''' )
         '''VALUES
         ''' (
@@ -237,7 +249,9 @@ Namespace My.Resources
         '''    @COMPLEMENT,
         '''    @DISTRICT,
         '''    @CITY,
-        '''    @STATE
+        '''    @STATE,
+        '''    @PHONE,
+        '''    @EMAIL
         ''' );.
         '''</summary>
         Friend ReadOnly Property CostSharingLocalInsert() As String
@@ -268,7 +282,9 @@ Namespace My.Resources
         '''    COSTSHARINGLOCAL.COMPLEMENT,
         '''    COSTSHARINGLOCAL.DISTRICT,
         '''    COSTSHARINGLOCAL.CITY,
-        '''    COSTSHARINGLOCAL.STATE
+        '''    COSTSHARINGLOCAL.STATE,
+        '''    COSTSHARINGLOCAL.PHONE,
+        '''    COSTSHARINGLOCAL.EMAIL
         '''FROM     COSTSHARINGLOCAL
         '''WHERE     COSTSHARINGLOCAL.COSTSHARINGID = @ID;.
         '''</summary>
@@ -287,7 +303,9 @@ Namespace My.Resources
         '''    COMPLEMENT = @COMPLEMENT,
         '''    DISTRICT = @DISTRICT,
         '''    CITY = @CITY,
-        '''    STATE = @STATE
+        '''    STATE = @STATE,
+        '''    PHONE = @PHONE,
+        '''    EMAIL = @EMAIL
         '''WHERE COSTSHARINGLOCAL.COSTSHARINGID = @COSTSHARINGID
         '''     AND COSTSHARINGLOCAL.ID = @ID;.
         '''</summary>
@@ -378,6 +396,16 @@ Namespace My.Resources
         '''<summary>
         '''  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property Disapprove() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Disapprove", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Edit() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Edit", resourceCulture)
@@ -411,6 +439,26 @@ Namespace My.Resources
         Friend ReadOnly Property FilterSmall() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("FilterSmall", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property FinalizeItem() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("FinalizeItem", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property History() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("History", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -1332,10 +1380,31 @@ Namespace My.Resources
         '''<summary>
         '''  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property Print() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Print", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Purchase_Order() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Purchase_Order", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Consulta uma cadeia de caracteres localizada semelhante a UPDATE PURCHASEORDER SET
+        '''    SITUATIONID = @SITUATIONID
+        '''WHERE PURCHASEORDER.ID = @ID.
+        '''</summary>
+        Friend ReadOnly Property PurchaseOrderChangeSituation() As String
+            Get
+                Return ResourceManager.GetString("PurchaseOrderChangeSituation", resourceCulture)
             End Get
         End Property
         
@@ -1358,14 +1427,15 @@ Namespace My.Resources
         '''        WHEN 2 THEN &apos;Recebido&apos;
         '''        WHEN 3 THEN &apos;Cancelado&apos;
         '''    END AS &apos;Status&apos;,
+        '''    CASE PURCHASEORDER.SITUATIONID
+        '''        WHEN 0 THEN &apos;Não Aprovado&apos;
+        '''        WHEN 1 THEN &apos;Aprovado&apos;
+        '''    END AS &apos;Situação&apos;,
         '''    STRFTIME(&apos;%d/%m/%Y&apos;, PURCHASEORDER.CREATIONDATE) As &apos;Data&apos;,
         '''    QUOTATION.ID AS &apos;Cotação&apos;,
         '''    COSTSHARING.NAME AS &apos;Centro de Custo&apos;,
         '''    PERSON.NAME AS &apos;Fornecedor&apos;,
-        '''    PURCHASEORDER.CONTACT AS &apos;Contato&apos;,
-        '''    PURCHASEORDER.PHONE AS &apos;Telefone&apos;,
-        '''    PURCHASEORDER.EMAIL AS &apos;E-Mail&apos;,
-        '''    PAYMENTT [o restante da cadeia de caracteres foi truncado]&quot;;.
+        '''     [o restante da cadeia de caracteres foi truncado]&quot;;.
         '''</summary>
         Friend ReadOnly Property PurchaseOrderFilter() As String
             Get
@@ -1377,6 +1447,7 @@ Namespace My.Resources
         '''  Consulta uma cadeia de caracteres localizada semelhante a INSERT INTO PURCHASEORDER
         ''' (
         '''    STATUSID,
+        '''    SITUATIONID,
         '''    CREATIONDATE,
         '''    QUOTATIONID,
         '''    COSTSHARINGID,
@@ -1401,13 +1472,12 @@ Namespace My.Resources
         '''VALUES
         ''' (
         '''    @STATUSID,
+        '''    @SITUATIONID,
         '''    @CREATIONDATE,
         '''    @QUOTATIONID,
         '''    @COSTSHARINGID,
         '''    @COSTSHARINGLOCALID,
-        '''    @PERSONID,
-        '''    @CONTACT,
-        '''    @P [o restante da cadeia de caracteres foi truncado]&quot;;.
+        ''' [o restante da cadeia de caracteres foi truncado]&quot;;.
         '''</summary>
         Friend ReadOnly Property PurchaseOrderInsert() As String
             Get
@@ -1519,6 +1589,7 @@ Namespace My.Resources
         '''  Consulta uma cadeia de caracteres localizada semelhante a SELECT	
         '''    PURCHASEORDER.ID,
         '''    PURCHASEORDER.STATUSID,
+        '''    PURCHASEORDER.SITUATIONID,
         '''    PURCHASEORDER.CREATIONDATE,
         '''    PURCHASEORDER.QUOTATIONID,
         '''    PURCHASEORDER.COSTSHARINGID,
@@ -1533,8 +1604,7 @@ Namespace My.Resources
         '''    PURCHASEORDER.CARRIERPRICE,
         '''    PURCHASEORDER.DISCOUNT,
         '''    PURCHASEORDER.EXPENSE,
-        '''    PURCHASEORDER.ICMSST,
-        '''    PUR [o restante da cadeia de caracteres foi truncado]&quot;;.
+        '''   [o restante da cadeia de caracteres foi truncado]&quot;;.
         '''</summary>
         Friend ReadOnly Property PurchaseOrderSelect() As String
             Get
@@ -1545,6 +1615,7 @@ Namespace My.Resources
         '''<summary>
         '''  Consulta uma cadeia de caracteres localizada semelhante a UPDATE PURCHASEORDER SET
         '''    STATUSID = @STATUSID,
+        '''    SITUATIONID = @SITUATIONID,
         '''    COSTSHARINGID = @COSTSHARINGID,
         '''    COSTSHARINGLOCALID = @COSTSHARINGLOCALID,
         '''    PERSONID = @PERSONID,
@@ -1559,8 +1630,7 @@ Namespace My.Resources
         '''    EXPENSE = @EXPENSE,
         '''    ICMSST = @ICMSST,
         '''    INITIALDELIVERY = @INITIALDELIVERY,
-        '''    FINALDELIVERY = @FINALDELIVERY,
-        '''    EXT [o restante da cadeia de caracteres foi truncado]&quot;;.
+        '''    FINALDE [o restante da cadeia de caracteres foi truncado]&quot;;.
         '''</summary>
         Friend ReadOnly Property PurchaseOrderUpdate() As String
             Get

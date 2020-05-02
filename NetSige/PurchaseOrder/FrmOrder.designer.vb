@@ -149,6 +149,7 @@ Partial Class FrmOrder
         Me.LblCreationDateValue = New System.Windows.Forms.ToolStripLabel()
         Me.LblQuotation = New System.Windows.Forms.ToolStripLabel()
         Me.LblQuotationValue = New System.Windows.Forms.ToolStripLabel()
+        Me.LblSituation = New System.Windows.Forms.ToolStripLabel()
         Me.TsMain = New System.Windows.Forms.ToolStrip()
         Me.BtnInclude = New System.Windows.Forms.ToolStripButton()
         Me.BtnDelete = New System.Windows.Forms.ToolStripButton()
@@ -156,9 +157,10 @@ Partial Class FrmOrder
         Me.BtnPrevious = New System.Windows.Forms.ToolStripButton()
         Me.BtnNext = New System.Windows.Forms.ToolStripButton()
         Me.BtnLast = New System.Windows.Forms.ToolStripButton()
-        Me.BtnFinalizeItem = New System.Windows.Forms.ToolStripButton()
         Me.BtnHistory = New System.Windows.Forms.ToolStripButton()
-        Me.BtnReport = New System.Windows.Forms.ToolStripButton()
+        Me.BtnApprove = New System.Windows.Forms.ToolStripButton()
+        Me.BtnPrint = New System.Windows.Forms.ToolStripButton()
+        Me.BtnFinalizeItem = New System.Windows.Forms.ToolStripButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TsTotal = New System.Windows.Forms.ToolStrip()
         Me.LblTotalNetValue = New System.Windows.Forms.ToolStripLabel()
@@ -1358,7 +1360,7 @@ Partial Class FrmOrder
         Me.TsData.BackColor = System.Drawing.Color.White
         Me.TsData.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TsData.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.TsData.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblID, Me.LblIDValue, Me.LblStatus, Me.BtnStatusValue, Me.LblCancel, Me.LblCreationDate, Me.LblCreationDateValue, Me.LblQuotation, Me.LblQuotationValue})
+        Me.TsData.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblID, Me.LblIDValue, Me.LblStatus, Me.BtnStatusValue, Me.LblCancel, Me.LblCreationDate, Me.LblCreationDateValue, Me.LblQuotation, Me.LblQuotationValue, Me.LblSituation})
         Me.TsData.Location = New System.Drawing.Point(0, 25)
         Me.TsData.Name = "TsData"
         Me.TsData.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
@@ -1440,12 +1442,22 @@ Partial Class FrmOrder
         Me.LblQuotationValue.Size = New System.Drawing.Size(15, 22)
         Me.LblQuotationValue.Text = "0"
         '
+        'LblSituation
+        '
+        Me.LblSituation.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.LblSituation.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblSituation.ForeColor = System.Drawing.Color.DarkRed
+        Me.LblSituation.Margin = New System.Windows.Forms.Padding(10, 1, 0, 2)
+        Me.LblSituation.Name = "LblSituation"
+        Me.LblSituation.Size = New System.Drawing.Size(153, 16)
+        Me.LblSituation.Text = "Pedido Não Aprovado"
+        '
         'TsMain
         '
         Me.TsMain.BackColor = System.Drawing.Color.White
         Me.TsMain.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.TsMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnInclude, Me.BtnDelete, Me.BtnFirst, Me.BtnPrevious, Me.BtnNext, Me.BtnLast, Me.BtnHistory, Me.BtnReport, Me.BtnFinalizeItem})
+        Me.TsMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnInclude, Me.BtnDelete, Me.BtnFirst, Me.BtnPrevious, Me.BtnNext, Me.BtnLast, Me.BtnHistory, Me.BtnApprove, Me.BtnPrint, Me.BtnFinalizeItem})
         Me.TsMain.Location = New System.Drawing.Point(0, 0)
         Me.TsMain.Name = "TsMain"
         Me.TsMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
@@ -1508,38 +1520,49 @@ Partial Class FrmOrder
         Me.BtnLast.Size = New System.Drawing.Size(23, 22)
         Me.BtnLast.Text = "Último"
         '
-        'BtnFinalizeItem
-        '
-        Me.BtnFinalizeItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.BtnFinalizeItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BtnFinalizeItem.Image = CType(resources.GetObject("BtnFinalizeItem.Image"), System.Drawing.Image)
-        Me.BtnFinalizeItem.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BtnFinalizeItem.Name = "BtnFinalizeItem"
-        Me.BtnFinalizeItem.Size = New System.Drawing.Size(23, 22)
-        Me.BtnFinalizeItem.Text = "ToolStripButton1"
-        Me.BtnFinalizeItem.ToolTipText = "Baixa de Item"
-        '
         'BtnHistory
         '
         Me.BtnHistory.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
         Me.BtnHistory.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BtnHistory.Image = CType(resources.GetObject("BtnHistory.Image"), System.Drawing.Image)
+        Me.BtnHistory.Image = Global.NetSige.My.Resources.Resources.History
         Me.BtnHistory.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnHistory.Name = "BtnHistory"
         Me.BtnHistory.Size = New System.Drawing.Size(23, 22)
         Me.BtnHistory.Text = "Histórico"
         Me.BtnHistory.ToolTipText = "Histórico"
         '
-        'BtnReport
+        'BtnApprove
         '
-        Me.BtnReport.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.BtnReport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BtnReport.Image = CType(resources.GetObject("BtnReport.Image"), System.Drawing.Image)
-        Me.BtnReport.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BtnReport.Name = "BtnReport"
-        Me.BtnReport.Size = New System.Drawing.Size(23, 22)
-        Me.BtnReport.Text = "ToolStripButton1"
-        Me.BtnReport.ToolTipText = "Gerar Relatório"
+        Me.BtnApprove.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.BtnApprove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BtnApprove.Image = Global.NetSige.My.Resources.Resources.Approve
+        Me.BtnApprove.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BtnApprove.Name = "BtnApprove"
+        Me.BtnApprove.Size = New System.Drawing.Size(23, 22)
+        Me.BtnApprove.Text = "Aprovar"
+        Me.BtnApprove.ToolTipText = "Aprovar"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.BtnPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BtnPrint.Image = Global.NetSige.My.Resources.Resources.Print
+        Me.BtnPrint.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(23, 22)
+        Me.BtnPrint.Text = "ToolStripButton1"
+        Me.BtnPrint.ToolTipText = "Gerar Relatório"
+        '
+        'BtnFinalizeItem
+        '
+        Me.BtnFinalizeItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.BtnFinalizeItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BtnFinalizeItem.Image = Global.NetSige.My.Resources.Resources.FinalizeItem
+        Me.BtnFinalizeItem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BtnFinalizeItem.Name = "BtnFinalizeItem"
+        Me.BtnFinalizeItem.Size = New System.Drawing.Size(23, 22)
+        Me.BtnFinalizeItem.Text = "ToolStripButton1"
+        Me.BtnFinalizeItem.ToolTipText = "Baixa de Item"
         '
         'Panel1
         '
@@ -1573,8 +1596,8 @@ Partial Class FrmOrder
         Me.LblTotalNetValue.Font = New System.Drawing.Font("Century Gothic", 11.25!)
         Me.LblTotalNetValue.Margin = New System.Windows.Forms.Padding(0, 1, 10, 2)
         Me.LblTotalNetValue.Name = "LblTotalNetValue"
-        Me.LblTotalNetValue.Size = New System.Drawing.Size(53, 22)
-        Me.LblTotalNetValue.Text = "950,00"
+        Me.LblTotalNetValue.Size = New System.Drawing.Size(37, 22)
+        Me.LblTotalNetValue.Text = "0,00"
         '
         'LblTotalNet
         '
@@ -1592,8 +1615,8 @@ Partial Class FrmOrder
         Me.LblTotalGrossValue.BackColor = System.Drawing.Color.White
         Me.LblTotalGrossValue.Font = New System.Drawing.Font("Century Gothic", 11.25!)
         Me.LblTotalGrossValue.Name = "LblTotalGrossValue"
-        Me.LblTotalGrossValue.Size = New System.Drawing.Size(65, 22)
-        Me.LblTotalGrossValue.Text = "1.000,00"
+        Me.LblTotalGrossValue.Size = New System.Drawing.Size(37, 22)
+        Me.LblTotalGrossValue.Text = "0,00"
         '
         'LblTotalGross
         '
@@ -1789,7 +1812,9 @@ Partial Class FrmOrder
     Friend WithEvents QtbCostSharingDocument As ControlLibrary.QueriedBox
     Friend WithEvents Label16 As Label
     Friend WithEvents Label30 As Label
-    Friend WithEvents BtnReport As ToolStripButton
+    Friend WithEvents BtnPrint As ToolStripButton
     Friend WithEvents BtnFinalizeItem As ToolStripButton
     Friend WithEvents BtnHistory As ToolStripButton
+    Friend WithEvents LblSituation As ToolStripLabel
+    Friend WithEvents BtnApprove As ToolStripButton
 End Class

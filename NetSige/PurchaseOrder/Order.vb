@@ -9,6 +9,13 @@ Public Class Order
         <TypeConverter(GetType(StatusFilterCollection))>
         <DisplayName("Status")>
         Public Property Status As String
+
+
+        <TypeConverter(GetType(SituationFilterCollection))>
+        <DisplayName("Situação")>
+        Public Property Situation As String
+
+
         <TypeConverter(GetType(ExpandableObjectConverter))>
         <DisplayName("Data de Criação")>
         Public Property CreationDate As New DateFilter
@@ -54,6 +61,7 @@ Public Class Order
                 Using Com As New SQLiteCommand(My.Resources.PurchaseOrderFilter, Con)
                     If ID <> Nothing Then Com.Parameters.AddWithValue("@ID", ID) : Filtering = True Else Com.Parameters.AddWithValue("@ID", "%")
                     If Status <> Nothing Then Com.Parameters.AddWithValue("@STATUSID", Common.OrderStatusTypes.IndexOf(Status)) : Filtering = True Else Com.Parameters.AddWithValue("@STATUSID", "%")
+                    If Situation <> Nothing Then Com.Parameters.AddWithValue("@SITUATIONID", Common.OrderStatusTypes.IndexOf(Situation)) : Filtering = True Else Com.Parameters.AddWithValue("@SITUATIONID", "%")
                     If Quotation <> Nothing Then Com.Parameters.AddWithValue("@QUOTATION", Quotation) : Filtering = True : Else Com.Parameters.AddWithValue("@QUOTATION", "%")
                     If CostSharing <> Nothing Then Com.Parameters.AddWithValue("@COSTSHARING", CostSharing) : Filtering = True : Else Com.Parameters.AddWithValue("@COSTSHARING", "%")
                     If Provider.ID <> Nothing Then Com.Parameters.AddWithValue("@PERSONID", Provider.ID) : Filtering = True : Else Com.Parameters.AddWithValue("@PERSONID", "%")
@@ -97,6 +105,7 @@ Public Class Order
         Public Sub Clean()
             ID = Nothing
             Status = Nothing
+            Situation = Nothing
             Provider.ID = Nothing
             Provider.Document = Nothing
             Provider.Name = Nothing
@@ -134,6 +143,19 @@ Public Class Order
                 Return New StandardValuesCollection(Common.OrderStatusTypes)
             End Function
         End Class
+        Private Class SituationFilterCollection
+            Inherits StringConverter
+            Public Overrides Function GetStandardValuesSupported(ByVal context As ITypeDescriptorContext) As Boolean
+                Return True
+            End Function
+            Public Overrides Function GetStandardValuesExclusive(ByVal context As ITypeDescriptorContext) As Boolean
+                Return True
+            End Function
+            Public Overrides Function GetStandardValues(ByVal context As ITypeDescriptorContext) As StandardValuesCollection
+                Return New StandardValuesCollection(Common.OrderSituationTypes)
+            End Function
+        End Class
+
         Private Class CarrierFilterCollection
             Inherits StringConverter
             Public Overrides Function GetStandardValuesSupported(ByVal context As ITypeDescriptorContext) As Boolean
@@ -407,6 +429,7 @@ Public Class Order
         End Get
     End Property
     Public Property Status As String = "Pendente"
+    Public Property Situation As String = "Não Aprovado"
     Private _CreationDate As Date = Today
     Public ReadOnly Property CreationDate As Date
         Get
@@ -473,6 +496,7 @@ Public Class Order
         If TableOrder.Rows.Count = 1 Then
             _ID = TableOrder.Rows(0).Item("ID").ToString
             Status = Common.OrderStatusTypes(TableOrder.Rows(0).Item("STATUSID"))
+            Situation = Common.OrderSituationTypes(TableOrder.Rows(0).Item("SITUATIONID"))
             _CreationDate = TableOrder.Rows(0).Item("CREATIONDATE")
             Quotation = If(TableOrder.Rows(0).Item("QUOTATIONID") Is DBNull.Value, New Quotation, New Quotation(TableOrder.Rows(0).Item("QUOTATIONID")))
             CostSharing = New CostSharing(TableOrder.Rows(0).Item("COSTSHARINGID"))
@@ -678,5 +702,18 @@ Public Class Order
                 Com.ExecuteNonQuery()
             End Using
         End Using
+    End Sub
+
+    Public Sub ChangeSituation()
+        Using Con As New SQLiteConnection(Common.ConnectionString)
+            Using Com As New SQLiteCommand(My.Resources.PurchaseOrderChangeSituation, Con)
+                Com.Parameters.AddWithValue("@ID", ID)
+                Com.Parameters.AddWithValue("SITUATIONID", If(Situation = "Aprovado", 0, 1))
+                Con.Open()
+                Com.ExecuteNonQuery()
+                Situation = If(Situation = "Aprovado", "Não Aprovado", "Aprovado")
+            End Using
+        End Using
+
     End Sub
 End Class

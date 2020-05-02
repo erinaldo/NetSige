@@ -104,14 +104,10 @@ Public Class FrmItemGroupsGrid
     Private Sub DgvData_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DgvData.CellFormatting
         If e.ColumnIndex = DgvData.Columns("STATUS").Index Then
             Select Case e.Value
-                Case Is = "Pendente"
+                Case Is = "Ativo"
                     e.CellStyle.ForeColor = Color.DarkBlue
-                Case Is = "Cancelado"
+                Case Is = "Bloqueado"
                     e.CellStyle.ForeColor = Color.DarkRed
-                Case Is = "Parc. Recebido"
-                    e.CellStyle.ForeColor = Color.DarkOrange
-                Case Is = "Recebido"
-                    e.CellStyle.ForeColor = Color.DarkGreen
             End Select
         End If
     End Sub

@@ -9,7 +9,9 @@ INSERT INTO COSTSHARINGLOCAL
     COMPLEMENT,
     DISTRICT,
     CITY,
-    STATE
+    STATE,
+    PHONE,
+    EMAIL
  )
 VALUES
  (
@@ -22,5 +24,7 @@ VALUES
     @COMPLEMENT,
     @DISTRICT,
     @CITY,
-    @STATE
+    @STATE,
+    @PHONE,
+    @EMAIL
  );
